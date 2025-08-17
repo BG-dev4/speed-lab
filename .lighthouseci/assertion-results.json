@@ -1,0 +1,70 @@
+[
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "cls-culprits-insight",
+    "level": "error",
+    "url": "https://speed-lab-one.vercel.app/",
+    "auditTitle": "Layout shift culprits",
+    "auditDocumentationLink": "https://web.dev/articles/optimize-cls"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.11,
+    "values": [
+      0.11,
+      0.11,
+      0.11
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "cumulative-layout-shift",
+    "level": "warn",
+    "url": "https://speed-lab-one.vercel.app/",
+    "auditTitle": "Cumulative Layout Shift",
+    "auditDocumentationLink": "https://web.dev/articles/cls"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "errors-in-console",
+    "level": "error",
+    "url": "https://speed-lab-one.vercel.app/",
+    "auditTitle": "Browser errors were logged to the console",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0,
+    "values": [
+      0,
+      0,
+      0
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditId": "robots-txt",
+    "level": "error",
+    "url": "https://speed-lab-one.vercel.app/",
+    "auditTitle": "robots.txt is not valid",
+    "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/"
+  }
+]

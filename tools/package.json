@@ -1,9 +1,0 @@
-{
-  "perf:audit": "lhci autorun",
-  "perf:audit:save": "lighthouse https://speed-lab-one.vercel.app/ 
---output=json --output-path=./audits/$(date +%s).json 
---chrome-flags='--headless=new'",
-  "perf:delta": "node tools/lh-delta.js",
-  "img:build": "node tools/img-pipeline.js"
-}
-
