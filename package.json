@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "img:build": "node tools/img-pipeline.cjs",
+    "perf:delta": "node tools/lh-delta.cjs"
   },
   "dependencies": {
     "astro": "^5.13.2"
