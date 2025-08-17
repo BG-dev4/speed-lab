@@ -1,48 +1,52 @@
 ---
-const title = "Speed Lab – Baseline";
+const title = "Speed Lab – Pass 1";
 ---
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content="Perf/SEO playground baseline 
-(intentionally slow)" />
-    <link rel="canonical" href="https://example.com/" />
-
-    <!-- Render-blocking Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link 
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" 
-rel="stylesheet">
-
-    <!-- Big, useless JS file -->
-    <script src="/heavy.js" defer></script>
-
+    <meta name="description" content="Perf/SEO playground after first optimization pass" />
+    <link rel="canonical" href="https://speed-lab-one.vercel.app/" />
     <style>
-      /* Bloated CSS */
-      
-.u1{margin:0}.u2{padding:0}.u3{border:0}.u4{outline:0}.u5{letter-spacing:1px}
-      body{font-family:'Inter',system-ui,-apple-system,Segoe 
-UI,Roboto,Helvetica,Arial,sans-serif}
+      :root{--font:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+      body{font-family:var(--font);margin:0}
       main{max-width:1200px;margin:0 auto;padding:24px}
       img{display:block;max-width:100%;height:auto}
-      .hero{width:2000px}
+      .wrap{display:grid;gap:16px}
     </style>
+    <!-- no Google Fonts -->
+    <!-- lazy-load heavy script to protect INP -->
+    <script>
+      requestIdleCallback?.(()=>{const s=document.createElement('script');s.src='/heavy.js';document.body.appendChild(s);});
+    </script>
+    <!-- optional: explicit preload of LCP image -->
+    <link rel="preload" as="image" href="/img/hero.avif" imagesrcset="/img/hero.avif" fetchpriority="high">
   </head>
   <body>
-    <main>
-      <h1>Speed Lab (Baseline)</h1>
-      <p>This version is intentionally slow for measurement and 
-optimization practice.</p>
-      <img class="hero" src="/img/hero-large.jpg" width="2000" 
-height="1200" alt="hero">
+    <main class="wrap">
+      <h1>Speed Lab (Pass 1)</h1>
+      <p>First pass: modern image formats + system fonts + deferred JS.</p>
+
+      <picture>
+        <source type="image/avif" srcset="/img/hero.avif" />
+        <source type="image/webp" srcset="/img/hero.webp" />
+        <img
+          src="/img/hero-large.jpg"
+          width="1600"
+          height="960"
+          alt="hero"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          style="aspect-ratio:1600/960"
+        />
+      </picture>
+
       <section>
         <h2>Content</h2>
-        <p>Some placeholder text so layout has weight.</p>
+        <p>Layout hints prevent CLS.</p>
       </section>
     </main>
   </body>
 </html>
-
