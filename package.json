@@ -1,21 +1,17 @@
 {
   "name": "speed-lab",
-  "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "img:build": "node tools/img-pipeline.cjs",
-    "perf:delta": "node tools/lh-delta.cjs"
+    "perf:before": "lhci autorun --config=./lhci.yml --collect.url=https://speed-lab-one.vercel.app/",
+    "perf:after": "lhci autorun --config=./lhci.yml --collect.url=https://speed-lab-one.vercel.app/",
+    "perf:delta": "node tools/lh-delta.cjs reports/before.json reports/after.json",
+    "img:build": "node tools/img-pipeline.cjs"
   },
   "dependencies": {
-    "astro": "^5.13.2"
-  },
-  "devDependencies": {
-    "@lhci/cli": "^0.15.1",
-    "lighthouse": "^12.8.1",
-    "sharp": "^0.34.3"
+    "astro": "^5.0.0"
   }
 }
