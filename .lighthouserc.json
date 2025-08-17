@@ -1,0 +1,10 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 3,
+      "settings": { "chromeFlags": "--headless=new" },
+      "url": ["https://speed-lab-one.vercel.app/"]
+    },
+    "upload": { "target": "temporary-public-storage" }
+  }
+}

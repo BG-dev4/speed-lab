@@ -10,5 +10,10 @@
   },
   "dependencies": {
     "astro": "^5.13.2"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "lighthouse": "^12.8.1",
+    "sharp": "^0.34.3"
   }
 }
