@@ -1,13 +1,16 @@
 ---
-const title = "Speed Lab – Pass 1";
+const title = "Speed Lab – Pass 2";
+const url = "https://speed-lab-one.vercel.app/";
+const desc = "Perf/SEO playground after Pass 2: responsive images, zero render-blocking, edge cache.";
+const imgBase = "/img/hero-large";
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content="Perf/SEO playground after first optimization pass" />
-    <link rel="canonical" href="https://speed-lab-one.vercel.app/" />
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={url} />
     <style>
       :root{--font:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
       body{font-family:var(--font);margin:0}
@@ -15,37 +18,66 @@ const title = "Speed Lab – Pass 1";
       img{display:block;max-width:100%;height:auto}
       .wrap{display:grid;gap:16px}
     </style>
-    <!-- no Google Fonts -->
-    <!-- lazy-load heavy script to protect INP -->
-    <script>
-      requestIdleCallback?.(()=>{const s=document.createElement('script');s.src='/heavy.js';document.body.appendChild(s);});
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content="/img/hero-large-1600.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content="/img/hero-large-1600.jpg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
+      "name":"Speed Lab",
+      "url":"https://speed-lab-one.vercel.app/"
+    }
     </script>
-    <!-- optional: explicit preload of LCP image -->
-    <link rel="preload" as="image" href="/img/hero.avif" imagesrcset="/img/hero.avif" fetchpriority="high">
+
+    <!-- Preload only the LCP candidate -->
+    <link rel="preload" as="image" href="/img/hero-large-1600.avif" imagesrcset="/img/hero-large-1600.avif" fetchpriority="high">
   </head>
   <body>
     <main class="wrap">
-      <h1>Speed Lab (Pass 1)</h1>
-      <p>First pass: modern image formats + system fonts + deferred JS.</p>
+      <h1>Speed Lab (Pass 2)</h1>
+      <p>Responsive images, system fonts, no render-blocking, and edge cache.</p>
 
       <picture>
-        <source type="image/avif" srcset="/img/hero.avif" />
-        <source type="image/webp" srcset="/img/hero.webp" />
+        <source type="image/avif" 
+          srcset="
+            {imgBase}-480.avif 480w,
+            {imgBase}-768.avif 768w,
+            {imgBase}-1080.avif 1080w,
+            {imgBase}-1600.avif 1600w" 
+          sizes="(max-width: 768px) 100vw, 768px" />
+        <source type="image/webp" 
+          srcset="
+            {imgBase}-480.webp 480w,
+            {imgBase}-768.webp 768w,
+            {imgBase}-1080.webp 1080w,
+            {imgBase}-1600.webp 1600w" 
+          sizes="(max-width: 768px) 100vw, 768px" />
         <img
-          src="/img/hero-large.jpg"
+          src="/img/hero-large-1600.jpg"
           width="1600"
-          height="960"
-          alt="hero"
+          height="900"
+          alt="Hero"
           loading="eager"
           fetchpriority="high"
           decoding="async"
-          style="aspect-ratio:1600/960"
+          style="aspect-ratio:1600/900"
         />
       </picture>
 
       <section>
         <h2>Content</h2>
-        <p>Layout hints prevent CLS.</p>
+        <p>Layout hints prevent CLS. Srcset reduces bytes on mobile.</p>
       </section>
     </main>
   </body>
